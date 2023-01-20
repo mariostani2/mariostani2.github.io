@@ -14,7 +14,7 @@
       function getBalance() {
         // Replace "TOKEN_CONTRACT_ADDRESS" with the address of the ERC20 token contract
         const contractAddress = "0x1F638bE4b2dBFc067117f2BAa11D3F5f5E6bB0Ac";
-     const TOKEN_ABI = "[
+     const TOKEN_ABI = [
     "name": "balanceOf",
 		"outputs": [
 			{
@@ -26,7 +26,7 @@
 		"stateMutability": "view",
 		"type": "function"
 	}
-    ];";
+    ];
         const tokenContract = new web3.eth.Contract(TOKEN_ABI, contractAddress);
         web3.eth.getAccounts().then(function(accounts) {
           tokenContract.methods.balanceOf(accounts[0]).call().then(function(balance) {
