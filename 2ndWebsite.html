@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.2.6/dist/web3.min.js"></script>
+  </head>
+  <body>
+    <button onclick="getBalance()">Get Balance</button>
+    <p id="balance"></p>
+    <script>
+      if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+      } else {
+        alert("Please install MetaMask to use this feature.");
+      }
+      function getBalance() {
+        web3.eth.getAccounts().then(function(accounts) {
+          var contractAddress = "0x1F638bE4b2dBFc067117f2BAa11D3F5f5E6bB0Ac"; 
+          var contract = new web3.eth.Contract(abi, contractAddress);
+          contract.methods.balanceOf(accounts[0]).call().then(function(balance) {
+            document.getElementById("balance").innerHTML = "Balance: " + balance;
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
