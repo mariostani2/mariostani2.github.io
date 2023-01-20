@@ -15,19 +15,17 @@
         // Replace "TOKEN_CONTRACT_ADDRESS" with the address of the ERC20 token contract
         const contractAddress = "0x1F638bE4b2dBFc067117f2BAa11D3F5f5E6bB0Ac";
      const TOKEN_ABI = "[
-     balanceOf
-    {
-        constant: true,
-
-        inputs: [{ name: "_owner", type: "address" }],
-
-        name: "balanceOf",
-
-        outputs: [{ name: "balance", type: "uint256" }],
-
-        type: "function",
-    }
-
+    "name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
     ];"
         const tokenContract = new web3.eth.Contract(TOKEN_ABI, contractAddress);
         web3.eth.getAccounts().then(function(accounts) {
