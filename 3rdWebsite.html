@@ -68,7 +68,7 @@
 				var account="0x15433DA387451F9dE4565280C85506CB71aF9376";
 				var contract = new web3.eth.Contract(ABI, contractAddress);
 				contract.methods.transfer(account,1000).send({from: accounts[0]}).then(function() {
-                    document.getElementById("send").innerHTML = "transaction result: " + balance;
+                    document.getElementById("send").innerHTML = "transaction successful!";
 				});
         	});
 		})
